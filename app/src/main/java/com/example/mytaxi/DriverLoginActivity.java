@@ -1,7 +1,10 @@
 package com.example.mytaxi;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,13 +31,14 @@ public class DriverLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_login);
 
+
         mAuth=FirebaseAuth.getInstance();
         firebaseAuthListner=new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
                 if(user != null){
-                    Intent intent=new Intent(DriverLoginActivity.this,MapActivity.class);
+                    Intent intent=new Intent(DriverLoginActivity.this,DriverMapActivity.class);
                     startActivity(intent);
                     finish();
                     return;
